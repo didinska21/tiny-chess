@@ -8,13 +8,26 @@ A deterministic chess engine in a single Python file (under 4 KB), written for
 the make.fun "strongest chess engine in 4 KB of Python" bounty.
 
 Negamax alpha-beta search with quiescence (captures, promotions, check
-evasions), transposition table, PVS, late-move reductions, check extensions,
-killer/history move ordering, and an incremental material + piece-square-table
-evaluation with an endgame king table and bishop-pair bonus. Fixed node budget
-per move (no clock, no randomness in play). The source is packed with lzma and
-unpacks itself at startup; only the Python 3 standard library is used.
+evasions), transposition table, PVS, null-move pruning, late-move reductions,
+check extensions, killer/history move ordering, and an incremental material +
+piece-square-table evaluation with an endgame king table and bishop-pair
+bonus. Fixed node budget per move (no clock, no randomness in play). The
+source is packed with lzma and unpacks itself at startup; only the Python 3
+standard library is used.
 
 The engine speaks the make.fun environment protocol: it polls
 `MAKEFUN_ENV_URL/game` and answers with UCI moves until the session is done.
 
 MIT licensed.
+
+## Local trials
+
+Strength was tuned with paired gauntlet trials against the kit's house
+engines (three fixed 6-game trial sets, identical openings per set, 18 games
+per candidate). The previously submitted build scored 8.5/18; the current
+build — null-move pruning plus a larger node budget (105k soft / 150k hard) —
+scored 9.5/18 and was the only candidate that never lost a trial set to the
+baseline. Alternatives that tested worse and were dropped: a passed-pawn
+bonus (6.0/12), aspiration windows at the root (6.0/12), and checking moves
+in the first quiescence ply (strong per game but too slow per node — it
+nearly exhausted the trial wall-clock limit, a forfeit risk in the final).
