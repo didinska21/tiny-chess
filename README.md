@@ -29,7 +29,12 @@ larger node budget (105k soft / 150k hard) — scored 9.5/18. Adding a
 history malus (quiet moves that fail at a node lose history, HS -= d*d/2)
 scored 10.0/18 against that build (3.5 + 3.0 + 3.5). The current build
 adds a passed-pawn bonus in the endgame evaluation on top of the malus
-build and scored 11.0/18 (3.5 + 2.5 + 5.0). A
+build and scored 11.0/18 (3.5 + 2.5 + 5.0). The current build also
+caches that passed-pawn bonus by pawn structure (a pawn-only Zobrist key
+maintained in make/unmake), which leaves the evaluation unchanged —
+verified by identical root moves and node counts against the uncached
+build and by move-for-move identical games in live trials — while
+cutting the endgame scan cost. A
 malus-plus-deeper-LMR stack tested worse (8.5/18) and was dropped, as were
 earlier candidates: a passed-pawn bonus on the older build (6.0/12 — it
 only pays off combined with the malus), aspiration windows at the
