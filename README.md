@@ -31,7 +31,8 @@ scored 10.0/18 against that build (3.5 + 3.0 + 3.5). The current build
 adds a passed-pawn bonus in the endgame evaluation on top of the malus
 build and scored 11.0/18 (3.5 + 2.5 + 5.0). A
 malus-plus-deeper-LMR stack tested worse (8.5/18) and was dropped, as were
-earlier candidates: a passed-pawn bonus (6.0/12), aspiration windows at the
+earlier candidates: a passed-pawn bonus on the older build (6.0/12 — it
+only pays off combined with the malus), aspiration windows at the
 root (6.0/12), and checking moves in the first quiescence ply (strong per
 game but too slow per node — it nearly exhausted the trial wall-clock
 limit, a forfeit risk in the final).
