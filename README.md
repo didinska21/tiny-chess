@@ -9,9 +9,9 @@ the make.fun "strongest chess engine in 4 KB of Python" bounty.
 
 Negamax alpha-beta search with quiescence (captures, promotions, check
 evasions), transposition table, PVS, null-move pruning, late-move reductions,
-check extensions, killer/history move ordering, and an incremental material +
-piece-square-table evaluation with an endgame king table and bishop-pair
-bonus. Fixed node budget per move (no clock, no randomness in play). The
+check extensions, killer/history move ordering with a malus for quiet moves
+that fail at a node, and an incremental material + piece-square-table
+evaluation with an endgame king table and bishop-pair bonus. Fixed node budget per move (no clock, no randomness in play). The
 source is packed with lzma and unpacks itself at startup; only the Python 3
 standard library is used.
 
