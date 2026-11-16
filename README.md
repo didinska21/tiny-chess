@@ -34,7 +34,10 @@ caches that passed-pawn bonus by pawn structure (a pawn-only Zobrist key
 maintained in make/unmake), which leaves the evaluation unchanged —
 verified by identical root moves and node counts against the uncached
 build and by move-for-move identical games in live trials — while
-cutting the endgame scan cost. A
+cutting the endgame scan cost (its trial-2 set finished in 1,037 s
+against roughly 1,300 s for the uncached build, with five of six games
+move-for-move identical; the sixth diverged on a house-engine move, a
+harness state artifact, not an engine difference). A
 malus-plus-deeper-LMR stack tested worse (8.5/18) and was dropped, as were
 earlier candidates: a passed-pawn bonus on the older build (6.0/12 — it
 only pays off combined with the malus), aspiration windows at the
